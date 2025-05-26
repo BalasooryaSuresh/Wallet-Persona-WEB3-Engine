@@ -40,8 +40,7 @@ $ uvicorn main:app --reload
 
 ```
 wallet-persona_engine_simplified/
-├── frontend/
-│   └── index.html
+├── index.html
 ├── main.py
 ├── requirements.txt
 └── README.md
