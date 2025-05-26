@@ -39,7 +39,7 @@ $ uvicorn main:app --reload
 ## 📁 Project Structure
 
 ```
-wallet-persona_engine_simplified/
+wallet/
 ├── index.html
 ├── main.py
 ├── requirements.txt
