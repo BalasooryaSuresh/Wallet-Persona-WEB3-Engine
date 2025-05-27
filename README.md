@@ -1,120 +1,114 @@
-# 🧠 Wallet Persona Web App
+# Wallet Persona Engine
 
-A full-stack Ethereum wallet intelligence app that generates a persona for any Ethereum address using FastAPI and TailwindCSS. It calculates wallet health, recommends dApps/NFTs, visualizes wallet journeys, and more — all without needing a login.
+An Ethereum wallet persona explorer that uses AI to analyze a wallet's on-chain behavior and visualize key metrics. It offers:
 
----
-
-## 🚀 Features
-
-* 🔍 Validate and analyze Ethereum wallet addresses
-* 💰 Get wallet balance and transaction count
-* 📈 Visualize wallet journey with Chart.js
-* 🧠 AI-generated wallet bios (offline heuristic based)
-* 💡 Recommend dApps or NFTs based on activity
-* ⚡ FastAPI backend with Web3.py
-* 🎨 Responsive UI with TailwindCSS
+* Persona summaries based on transaction patterns.
+* KMeans clustering of wallet behaviors.
+* Wallet-to-wallet similarity via vector embeddings.
+* Charts of balance vs transaction activity.
+* Dark mode UI.
+* Recommendations for dApps and NFTs.
 
 ---
 
-## 📦 Installation
+## 🔧 Features
+
+* **Address Input**: Enter any Ethereum address for analysis.
+* **Persona Summary**: AI-generated summary based on balance, gas usage, tx count, etc.
+* **Cluster Detection**: Groups wallet behavior using KMeans clustering.
+* **Similarity Check**: Compare two wallet addresses with cosine similarity.
+* **Chart.js Visuals**: Display tx count and balance bar charts.
+* **dApp/NFT Recommendations**: Suggested based on clustering.
+* **Dark Mode**: Toggle between light/dark themes.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone this repository
 
 ```bash
-# 1. Clone the repository
-$ git clone https://github.com/yourusername/wallet-persona.git
-$ cd wallet-persona
-
-# 2. Create and activate a virtual environment
-$ python -m venv venv
-$ source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# 3. Install dependencies
-$ pip install -r requirements.txt
-
-# 4. Run the FastAPI server
-$ uvicorn main:app --reload
+git clone https://github.com/yourusername/wallet-persona-engine.git
+cd wallet-persona-engine
 ```
 
----
+### 2. Install dependencies
 
-## 📁 Project Structure
-
-```
-wallet/
-├── index.html
-├── main.py
-├── requirements.txt
-└── README.md
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
----
+### 3. Run the app
 
-## 🔌 API Endpoint
-
-### `POST /persona`
-
-Send an Ethereum wallet address and receive its persona:
-
-#### Request Body
-
-```json
-{
-  "address": "0xabc123..."
-}
+```bash
+python main.py
 ```
 
-#### Response
-
-```json
-{
-  "address": "0xabc123...",
-  "balance": "1.2345 ETH",
-  "txCount": 42,
-  "healthScore": "Moderate",
-  "bio": "Active DeFi user with interest in stablecoins.",
-  "recommendations": ["Uniswap", "Zapper", "Rarible"]
-}
-```
+This will auto-open your browser to `http://localhost:8000`.
 
 ---
 
-## 🛠 Built With
+## 🧠 How It Works
 
-* FastAPI 🔥
-* Web3.py 🌐
-* TailwindCSS 🎨
-* Chart.js 📊
-* Vanilla JS
+1. **main.py** uses FastAPI to expose:
 
----
+   * `/persona`: Accepts a wallet address and returns persona data + recommendations.
+   * `/similarity`: Accepts two wallet addresses and returns cosine similarity.
 
-## 🗺️ Roadmap
+2. **index.html** is a responsive UI that lets users:
 
-* [x] Wallet validation & persona engine
-* [x] Basic frontend UI
-* [x] Chart.js wallet journey visualization
-* [x] Offline AI-generated wallet bios
-* [x] Heuristic dApp/NFT recommendations
-* [ ] ENS address resolution
-* [ ] Dark mode toggle
-* [ ] Deploy on Vercel or Render
-* [ ] Expand risk scoring model
-* [ ] Add wallet clustering insights
-* [ ] Introduce user session saving (client-only)
+   * Analyze a wallet
+   * See visual metrics
+   * Get dApp/NFT recommendations
+   * Compare wallet similarity
+
+3. **Clustering & Similarity**:
+
+   * Feature vector: balance, tx count, gas used.
+   * KMeans (k=4) to group wallets.
+   * Cosine similarity between feature vectors.
 
 ---
 
-## 📄 License
+## 📁 Files
 
-This project is not licensed under the any means jut made for a competition.
+* `main.py` - FastAPI backend with clustering and AI logic.
+* `index.html` - Tailwind-based frontend UI with Chart.js and dark mode toggle.
+* `requirements.txt` - Python dependencies.
+* `README.md` - This file.
 
 ---
 
-## 🤝 Contributing
+## 📦 Requirements
 
-Contributions, issues, and feature requests are welcome!
+* Python 3.8+
+* FastAPI
+* Uvicorn
+* scikit-learn
+* numpy
+* webbrowser
 
-1. 🍴 Fork the repo
-2. 🛠️ Create your feature branch: `git checkout -b feature/my-feature`
-3. 📦 Commit your changes: `git commit -am 'Add cool feature'`
-4. 🚀 Push to the branch: `git push origin feature/my-feature`
-5. 🔁 Open a pull request
+---
+
+## 💡 Notes
+
+* No actual web3 or blockchain call — the app uses placeholder logic. Integrate Etherscan API or Alchemy for real on-chain data.
+* Models and embeddings are local/simulated. For production, consider vector databases and actual ML inference pipelines.
+
+---
+
+## 📜 License
+
+None
+
+---
+
+## 🙋‍♂️ Acknowledgements
+
+* Tailwind CSS for rapid styling
+* Chart.js for data visualizations
+* scikit-learn for clustering
+
+Enjoy exploring wallet personas!
