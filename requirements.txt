@@ -1,0 +1,9 @@
+
+fastapi
+uvicorn
+web3
+httpx
+pydantic
+numpy
+sklearn.cluster
+sklearn.preprocessing
